@@ -2,6 +2,7 @@
 
 use Psr\Http\Message\ServerRequestInterface;
 
+// not implements MiddlewareInterface, it is callable type handler
 class MiddlewareC
 {
     /**
