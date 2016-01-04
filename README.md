@@ -18,6 +18,9 @@ Milddleware, может не вызывать слеюудщий middleware, а 
 
 Возвращаемый тип объекта `$response` также никак не ограничен. Вы можете вернуть из обработчика любой тип, например массив или объект типа ResponseInterface (psr-7).
 
+## Installation
+
+```$ composer require alexpts/php-simple-middlewares```
 
 ## Примеры
 
