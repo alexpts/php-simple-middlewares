@@ -1,5 +1,7 @@
 # php-simple-middlewares
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/2ae889b1-18df-43ef-9724-dce19c388e46/big.png)](https://insight.sensiolabs.com/projects/2ae889b1-18df-43ef-9724-dce19c388e46)
+
 [![Build Status](https://travis-ci.org/alexpts/php-simple-middlewares.svg?branch=master)](https://travis-ci.org/alexpts/php-simple-middlewares)
 [![Test Coverage](https://codeclimate.com/github/alexpts/php-simple-middlewares/badges/coverage.svg)](https://codeclimate.com/github/alexpts/php-simple-middlewares/coverage)
 [![Code Climate](https://codeclimate.com/github/alexpts/php-simple-middlewares/badges/gpa.svg)](https://codeclimate.com/github/alexpts/php-simple-middlewares)
