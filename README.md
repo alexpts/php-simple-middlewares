@@ -34,18 +34,18 @@ use PTS\Middleware\MiddlewareManager;
 
 $middlewareManager = new MiddlewareManager();
 $middlewareManager->push(function($request, $next){
-	// optionally modify the request
+    /* optionally modify the request */
     $request = $request->...;
 	
-	// optionally skip the $next middleware and return early
+    /* optionally skip the $next middleware and return early */
     if (...) {
         return $response;
     }
 	
-	// optionally invoke the $next middleware and get back a new response
+    /* optionally invoke the $next middleware and get back a new response */
     $response = $next($request);
 	
-	// optionally modify the Response if desired
+    /* optionally modify the Response if desired */
     $response = $response->...;
 	
     return $response;
@@ -62,27 +62,27 @@ use PTS\Middleware\MiddlewareInterface;
 
 class MiddlewareA implements MiddlewareInterface
 {
-	public function __invoke(ServerRequestInterface $request, callable $next)
+    public function __invoke(ServerRequestInterface $request, callable $next)
     {
-		$method = $request->getMethod();
+        $method = $request->getMethod();
         if (method !== 'GET') {
-			return new JsonResponse(['status' => 405], 405);
-		}
-		
-		$response = $next($request);
-		// optionally modify the Response if desired
-    	$response = $response->...;
-		
-		return $response;
+            return new JsonResponse(['status' => 405], 405);
+        }
+
+        $response = $next($request);
+        /* optionally modify the Response if desired */
+        $response = $response->...;
+
+        return $response;
     }
 }
 
 class FrontController implements MiddlewareInterface
 {
-	public function __invoke(ServerRequestInterface $request, callable $next)
+    public function __invoke(ServerRequestInterface $request, callable $next)
     {
-		// ... some work and create response		
-		return $response;
+        /* ... some work and create response */	
+        return $response;
     }
 }
 
@@ -90,6 +90,6 @@ $middlewareManager = new MiddlewareManager();
 $middlewareManager->push(new MiddlewareA);
 $middlewareManager->push(new FrontController);
 
-// ... creatre $request from global
+/* ... creatre $request from global */
 $response = $middlewareManager($request);
 ```
