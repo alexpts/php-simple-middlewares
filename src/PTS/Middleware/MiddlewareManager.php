@@ -1,4 +1,5 @@
 <?php
+
 namespace PTS\Middleware;
 
 use Psr\Http\Message\ResponseInterface;
@@ -27,7 +28,7 @@ class MiddlewareManager
     public function __invoke(ServerRequestInterface $request)
     {
         if (empty($this->middlewares)) {
-           return null;
+            return null;
         }
 
         $middleware = array_shift($this->middlewares);
