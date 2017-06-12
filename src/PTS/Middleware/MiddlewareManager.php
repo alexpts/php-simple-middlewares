@@ -1,35 +1,48 @@
 <?php
 namespace PTS\Middleware;
 
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class MiddlewareManager
 {
     /** @var callable[]|MiddlewareInterface[] */
     protected $middlewares = [];
+    /** @var array|callable[] */
+    protected $exceptionHandlers = [];
 
-    /**
-     * @param callable|MiddlewareInterface $middleware
-     * @return $this
-     */
-    public function push(callable $middleware)
+    public function push(callable $middleware, callable $exceptionHandler = null): self
     {
         $this->middlewares[] = $middleware;
+        $this->exceptionHandlers[] = $exceptionHandler;
         return $this;
     }
 
     /**
-     * @param RequestInterface $request
-     * @return ResponseInterface|null|mixed
+     * @param ServerRequestInterface $request
+     * @return mixed|null|ResponseInterface
+     *
+     * @throws \Throwable
      */
-    public function __invoke(RequestInterface $request)
+    public function __invoke(ServerRequestInterface $request)
     {
         if (empty($this->middlewares)) {
            return null;
         }
 
         $middleware = array_shift($this->middlewares);
-        return call_user_func_array($middleware, [$request, $this]);
+        $exceptionHandler = array_shift($this->exceptionHandlers);
+
+        try {
+            $response = $middleware($request, $this);
+        } catch (\Throwable $exception) {
+            if ($exceptionHandler === null) {
+                throw $exception;
+            }
+
+            $response = $exceptionHandler($exception);
+        }
+
+        return $response;
     }
 }

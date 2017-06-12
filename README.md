@@ -90,6 +90,22 @@ $middlewareManager = new MiddlewareManager();
 $middlewareManager->push(new MiddlewareA);
 $middlewareManager->push(new FrontController);
 
-/* ... creatre $request from global */
+/* ... PSR-7 $request */
+$response = $middlewareManager($request);
+```
+
+
+#### Обработчики ошибок/исключений
+Если рассматривать middleware как независимые приложения, то каждый обработчик должен вернуть PSR-7 ответ в случае ошибки/исключения.
+Такой ответ должен пройти всю цепочку middleware в обратном порядке.
+
+/* Custom exception handler */
+```php
+$middlewareManager = new MiddlewareManager();
+$middlewareManager->push(new MiddlewareA);
+$middlewareManager->push(new FrontController, function (\Throwable $ex) {
+    return new JsonResponse(['error' => $ex->getMessage()], 500);
+});
+
 $response = $middlewareManager($request);
 ```
