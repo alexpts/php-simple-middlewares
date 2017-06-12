@@ -99,7 +99,6 @@ $response = $middlewareManager($request);
 Если рассматривать middleware как независимые приложения, то каждый обработчик должен вернуть PSR-7 ответ в случае ошибки/исключения.
 Такой ответ должен пройти всю цепочку middleware в обратном порядке.
 
-/* Custom exception handler */
 ```php
 $middlewareManager = new MiddlewareManager();
 $middlewareManager->push(new MiddlewareA);
