@@ -7,7 +7,9 @@
 [![Code Climate](https://codeclimate.com/github/alexpts/php-simple-middlewares/badges/gpa.svg)](https://codeclimate.com/github/alexpts/php-simple-middlewares)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/alexpts/php-simple-middlewares/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/alexpts/php-simple-middlewares/?branch=master)
 
+[New PSR-15 compatible middleware manager](https://github.com/alexpts/psr15-middleware-manager)
 
+(deprecated)
 Simple middlewares compatible with the PSR-7
 
 MiddlewaresManager позволяет настраивать очередь выполнения программного обеспечения промежуточного уровня.
